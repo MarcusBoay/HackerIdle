@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BotnetManager : MonoBehaviour {
 
@@ -9,6 +11,12 @@ public class BotnetManager : MonoBehaviour {
     public int[] pointsValue;
     public int botnetCost;
     public int upgradeCost;
+
+    //UI stuff
+    public Text numberOfBotnetsUIValue;
+    public Text costOfBotnetUIValue;
+    public Text numberOfUpgradesUIValue;
+    public Text costOfUpgradeUIValue;
 
     private GameObject GM;
     
@@ -19,7 +27,19 @@ public class BotnetManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        //to limit upgrade number to 4
+        if (numberOfUpgrades > 4)
+        {
+            numberOfUpgrades = 4;
+        }
+        //change UI for number of botnets
+        ShowNumberOfBotnets();
+        //change UI for cost of botnets
+        ShowCostOfBotnet();
+        //change UI for number of upgrades
+        ShowNumberOfUpgrades();
+        //change UI for cost of upgrades
+        ShowCostOfUpgrade();
 	}
 
     IEnumerator BotnetPointGiver()
@@ -43,6 +63,30 @@ public class BotnetManager : MonoBehaviour {
             GM.GetComponent<ScoreManager>().points -= botnetCost;
             //increase player's number of botnets
             numberOfBotnets += 1;
+            //increase cost of botnet everytime it is purchased
+            botnetCost = Convert.ToInt32(botnetCost * 1.2);
+            //increase cost of upgrade everytime it is purchased
+            upgradeCost = Convert.ToInt32(upgradeCost * 1.2);
         }
+    }
+
+    public void ShowNumberOfBotnets()
+    {
+        numberOfBotnetsUIValue.text = numberOfBotnets.ToString();
+    }
+
+    public void ShowCostOfBotnet()
+    {
+        costOfBotnetUIValue.text = botnetCost.ToString();
+    }
+
+    public void ShowNumberOfUpgrades()
+    {
+        numberOfUpgradesUIValue.text = numberOfBotnets.ToString();
+    }
+
+    public void ShowCostOfUpgrade()
+    {
+        costOfUpgradeUIValue.text = upgradeCost.ToString();
     }
 }
