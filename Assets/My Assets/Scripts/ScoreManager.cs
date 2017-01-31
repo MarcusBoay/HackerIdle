@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour {
 	void Update () {
         //update internet points UI
         pointsText.text = points.ToString(); //will add 456K, 765M, 192B, etc in the future
-	}
+    }
     
     public void PlusPointsOnClick()
     {

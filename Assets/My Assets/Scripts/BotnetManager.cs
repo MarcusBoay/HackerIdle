@@ -18,6 +18,7 @@ public class BotnetManager : MonoBehaviour {
     public Text numberOfUpgradesUIValue;
     public Text costOfUpgradeUIValue;
 
+    //GameManager reference
     private GameObject GM;
     
 	void Start () {
@@ -25,9 +26,8 @@ public class BotnetManager : MonoBehaviour {
         StartCoroutine(BotnetPointGiver());
 	}
 	
-	// Update is called once per frame
 	void Update () {
-        //to limit upgrade number to 4
+        //to limit upgrade number to 4 //placeholder //find out how the values increase with each other
         if (numberOfUpgrades > 4)
         {
             numberOfUpgrades = 4;
@@ -65,11 +65,24 @@ public class BotnetManager : MonoBehaviour {
             numberOfBotnets += 1;
             //increase cost of botnet everytime it is purchased
             botnetCost = Convert.ToInt32(botnetCost * 1.2);
-            //increase cost of upgrade everytime it is purchased
-            upgradeCost = Convert.ToInt32(upgradeCost * 1.2);
         }
     }
 
+    public void IncreaseNumberOfUpgrades()
+    {
+        // checks if the player has enough points to upgrade
+        if (GM.GetComponent<ScoreManager>().points >= upgradeCost)
+        {
+            //decrease player's points by 1 botnet cost
+            GM.GetComponent<ScoreManager>().points -= botnetCost;
+            //increase player's number of botnets
+            numberOfUpgrades += 1;            
+            //increase cost of upgrade everytime it is purchased
+            upgradeCost = Convert.ToInt32(upgradeCost * 3);
+        }
+    }
+
+    //UI stuff
     public void ShowNumberOfBotnets()
     {
         numberOfBotnetsUIValue.text = numberOfBotnets.ToString();
@@ -82,7 +95,7 @@ public class BotnetManager : MonoBehaviour {
 
     public void ShowNumberOfUpgrades()
     {
-        numberOfUpgradesUIValue.text = numberOfBotnets.ToString();
+        numberOfUpgradesUIValue.text = numberOfUpgrades.ToString();
     }
 
     public void ShowCostOfUpgrade()
