@@ -20,14 +20,10 @@ public class ClickerManager : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (isRealHacker)
+		if (isRealHacker && Input.anyKeyDown)
         {
-            //makes player have ability to type to send ping
-            if (Input.anyKeyDown)
-            {
-                GM.GetComponent<ScoreManager>().points += 1; //1 is placeholder value for click value
-                Debug.Log("sfdsf");
-            }
+            //makes player have ability to type to send ping if he has the upgrade and any keyboard key is pressed
+            GM.GetComponent<ScoreManager>().points += 1; //1 is placeholder value for click value
         }
         //change UI for cost of upgrade
         ShowCostOfUpgrade();
