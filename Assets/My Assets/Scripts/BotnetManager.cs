@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BotnetManager : MonoBehaviour {
 
-    public int numberOfUpgrades; //reference this in the botnet script
+    public int numberOfUpgrades;
     public int numberOfBotnets;
     public int numberOfSpeed;
     public float[] botnetSpeed;
@@ -40,15 +40,15 @@ public class BotnetManager : MonoBehaviour {
         //change UI for number of botnets
         ShowUIText(numberOfBotnetsUIValue, numberOfBotnets);
         //change UI for cost of botnets
-        ShowUIText(costOfBotnetUIValue, botnetCost);
+        ShowUICost(costOfBotnetUIValue, botnetCost);
         //change UI for number of upgrades
         ShowUIText(numberOfUpgradesUIValue, numberOfUpgrades);
         //change UI for cost of upgrades
-        ShowUIText(costOfUpgradeUIValue, upgradeCost);
+        ShowUICost(costOfUpgradeUIValue, upgradeCost);
         //change UI for number of speed
         ShowUIText(numberOfSpeedUIValue, numberOfSpeed);
         //change UI for cost of speed
-        ShowUIText(costOfSpeedUIValue, speedCost);
+        ShowUICost(costOfSpeedUIValue, speedCost);
 	}
 
     IEnumerator BotnetPointGiver()
@@ -73,7 +73,7 @@ public class BotnetManager : MonoBehaviour {
             //increase player's number of botnets
             numberOfBotnets += 1;
             //increase cost of botnet everytime it is purchased
-            botnetCost = Convert.ToInt32(botnetCost * 1.1);
+            botnetCost = Convert.ToInt32(botnetCost * 1.15);
         }
     }
 
@@ -94,7 +94,7 @@ public class BotnetManager : MonoBehaviour {
             }else
             {
                 //increase cost of upgrade everytime it is purchased
-                upgradeCost = Convert.ToInt32(upgradeCost * 2);
+                upgradeCost = Convert.ToInt32(upgradeCost * 5);
             }
         }
     }
@@ -124,5 +124,10 @@ public class BotnetManager : MonoBehaviour {
     public void ShowUIText(Text myText, int myValue)
     {
         myText.text = myValue.ToString();
+    }
+
+    public void ShowUICost(Text myText, int myCost)
+    {
+        myText.text = " Cost: " + myCost.ToString();
     }
 }

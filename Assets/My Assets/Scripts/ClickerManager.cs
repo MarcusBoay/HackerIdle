@@ -11,6 +11,8 @@ public class ClickerManager : MonoBehaviour {
     //UI stuff
     public Text realHackerUpgradeUIValue;
 
+    public Button realHackerUpgradeButton;
+
     //GameManager reference
     public GameObject GM;
     
@@ -38,13 +40,15 @@ public class ClickerManager : MonoBehaviour {
             GM.GetComponent<ScoreManager>().points -= realHackerUpgradeCost;
             //give player access to real hacker upgrade
             isRealHacker = true;
+            //disable button once activated
+            realHackerUpgradeButton.interactable = false;
         }
     }
 
     //UI stuff
     public void ShowCostOfUpgrade()
     {
-        realHackerUpgradeUIValue.text = realHackerUpgradeCost.ToString();
+        realHackerUpgradeUIValue.text = " Cost: " + realHackerUpgradeCost.ToString();
     }
 
     //disable button after upgrade, todo
