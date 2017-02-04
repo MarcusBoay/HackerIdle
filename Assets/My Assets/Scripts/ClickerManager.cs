@@ -42,6 +42,7 @@ public class ClickerManager : MonoBehaviour {
             isRealHacker = true;
             //disable button once activated
             realHackerUpgradeButton.interactable = false;
+            realHackerUpgradeCost = 0;
         }
     }
 
