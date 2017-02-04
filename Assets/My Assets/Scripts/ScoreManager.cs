@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
-    public int points;
+    public float points;
     public Text pointsText;
     
 	void Start () {
@@ -14,11 +15,11 @@ public class ScoreManager : MonoBehaviour {
 	
 	void Update () {
         //update internet points UI
-        pointsText.text = points.ToString(); //will add 456K, 765M, 192B, etc in the future
+        pointsText.text = Convert.ToInt32(points).ToString(); //will add 456K, 765M, 192B, etc in the future
     }
     
     public void PlusPointsOnClick()
     {
-        points += 1; //1 is a placeholder number, will be changed in future updates
+        points += GameObject.Find("BotnetManager").gameObject.GetComponent<BotnetManager>().numberOfUpgrades + 1;
     }
 }
