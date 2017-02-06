@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour {
     public Text pointsText;
     
 	void Start () {
-        points = 0;
+        points = 0; //placeholder, will be store on player's account
 	}
 	
 	void Update () {
@@ -20,6 +20,6 @@ public class ScoreManager : MonoBehaviour {
     
     public void PlusPointsOnClick()
     {
-        points += GameObject.Find("BotnetManager").gameObject.GetComponent<BotnetManager>().numberOfUpgrades + 1;
+        points += 1;
     }
 }
