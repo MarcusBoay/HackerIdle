@@ -20,6 +20,8 @@ public class ScoreManager : MonoBehaviour {
     
     public void PlusPointsOnClick()
     {
-        points += 1;
+        points += 1;//1 is placeholder value for now, might change in future update
+        //makes popup text for points at mouse position
+        PopupTextController.CreatePopupText("1", Input.mousePosition);
     }
 }

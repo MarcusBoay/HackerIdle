@@ -26,6 +26,8 @@ public class ClickerManager : MonoBehaviour {
         {
             //makes player have ability to type to send ping if he has the upgrade and any keyboard key is pressed
             GM.GetComponent<ScoreManager>().points += 1; //1 is placeholder value for click value
+            //makes popup text for points at mouse position
+            PopupTextController.CreatePopupText("1", Input.mousePosition);
         }
         //change UI for cost of upgrade
         ShowCostOfUpgrade();
@@ -51,6 +53,4 @@ public class ClickerManager : MonoBehaviour {
     {
         realHackerUpgradeUIValue.text = " Cost: " + realHackerUpgradeCost.ToString();
     }
-
-    //disable button after upgrade, todo
 }
