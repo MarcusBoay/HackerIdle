@@ -12,6 +12,8 @@ public class UpgradesManager : MonoBehaviour {
     public Text upgradeCostUIValue;
     public Button upgradeButton;
 
+    public GameObject nextUpgradeButton;
+
     private GameObject GM;
 
     void Start()
@@ -24,6 +26,7 @@ public class UpgradesManager : MonoBehaviour {
         ShowCostOfUpgrade();
     }
 
+    //UI stuff
     public void BuyUpgrade()
     {
         if (GM.GetComponent<ScoreManager>().points >= upgradeCost)
@@ -33,6 +36,11 @@ public class UpgradesManager : MonoBehaviour {
             upgradeButton.interactable = false;
             upgradeCost = 0;
         }
+    }
+
+    public void ActivateNextButton()
+    {
+        nextUpgradeButton.SetActive(true);
     }
 
     //UI stuff
