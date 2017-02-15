@@ -27,6 +27,7 @@ public class ScoreManager : MonoBehaviour {
         ShowPointsPerSecond();
     }
 
+    //UI stuff, to show points per second from botnets
     public void ShowPointsPerSecond()
     {
         pointsPerSecond = 0;

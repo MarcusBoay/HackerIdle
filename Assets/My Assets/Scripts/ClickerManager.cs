@@ -23,15 +23,20 @@ public class ClickerManager : MonoBehaviour {
 	}
 	
 	void Update () {
-        //makes player have ability to type to send ping if he has the upgrade and any keyboard key is pressed
-        if (isRealHacker && Input.anyKeyDown)
+        //to find if player presses any letter keys
+        for (int i = 97; i < 123; i++)
         {
-            double pointsToAdd = 0;
-            pointsToAdd = CalculatePointsToAdd(pointsToAdd);
-            //gives player points
-            GM.GetComponent<ScoreManager>().points += pointsToAdd;
-            //makes popup text for points at mouse position
-            PopupTextController.CreatePopupText(pointsToAdd.ToString(), Input.mousePosition);
+            //makes player have ability to type to send ping if he has the upgrade and any keyboard key is pressed
+            if (isRealHacker && Input.GetKeyDown((KeyCode)i))
+            {
+                double pointsToAdd = 0;
+                pointsToAdd = CalculatePointsToAdd(pointsToAdd);
+                //gives player points
+                GM.GetComponent<ScoreManager>().points += pointsToAdd;
+                //makes popup text for points at mouse position
+                PopupTextController.CreatePopupText(pointsToAdd.ToString(), Input.mousePosition);
+                break;
+            }
         }
         //change UI for cost of upgrade
         ShowCostOfUpgrade();
@@ -50,10 +55,11 @@ public class ClickerManager : MonoBehaviour {
     //calculates how many points to give to player
     public double CalculatePointsToAdd(double mPointsToAdd)
     {
-        float randValue = UnityEngine.Random.value;
+        float randValue = Random.value;
+        //chance to get extra points
         if (randValue < 0.99f) //0.99f is a placeholder value
         {
-            //99% chance that it's normal points
+            //99% chance to get normal points
             mPointsToAdd = 1 + STM.GetComponent<ServerTierManager>().serverTier;
         }
         else
