@@ -8,8 +8,12 @@ public class ServerTierManager : MonoBehaviour {
     public int serverTier;
     public int maxTier;
 
+    public string[] serverName;
+
     public Button lowerTierButton;
     public Button higherTierButton;
+
+    public Text serverNameText;
 
     public GameObject[] upgradeManagers;
 
@@ -31,6 +35,7 @@ public class ServerTierManager : MonoBehaviour {
             lowerTierButton.interactable = true;
             higherTierButton.interactable = upgradeManagers[serverTier].GetComponent<UpgradesManager>().isUpgraded;
         }
+        ShowServerName();
 	}
 
     public void IncreaseServerTier()
@@ -41,5 +46,10 @@ public class ServerTierManager : MonoBehaviour {
     public void DecreaseServerTier()
     {
         serverTier -= 1;
+    }
+    //UI stuff
+    public void ShowServerName()
+    {
+        serverNameText.text = serverName[serverTier];
     }
 }
