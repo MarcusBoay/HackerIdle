@@ -13,7 +13,8 @@ public class ScoreManager : MonoBehaviour {
     public Text pointsPerSecondText;
 
     private GameObject STM;
-    public GameObject[] BM;
+    public GameObject[] BM1;
+    public GameObject[] BM2;
     
 	void Start () {
         STM = GameObject.Find("ServerTierManager").gameObject;
@@ -31,9 +32,13 @@ public class ScoreManager : MonoBehaviour {
     public void ShowPointsPerSecond()
     {
         pointsPerSecond = 0;
-        for (int i = 0; i < BM.Length; i++)
+        for (int i = 0; i < BM1.Length; i++)
         {
-            pointsPerSecond += BM[i].GetComponent<BotnetManager>().totalPointsPerSecond;
+            pointsPerSecond += BM1[i].GetComponent<BotnetManager>().totalPointsPerSecond;
+        }
+        for (int i = 0; i < BM2.Length; i++)
+        {
+            pointsPerSecond += BM2[i].GetComponent<BotnetTier2Manager>().totalPointsPerSecond;
         }
         pointsPerSecondText.text = string.Format("{0:F1}", pointsPerSecond);
     }

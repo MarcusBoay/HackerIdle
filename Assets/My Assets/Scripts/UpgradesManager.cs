@@ -24,6 +24,14 @@ public class UpgradesManager : MonoBehaviour {
     void Update()
     {
         ShowCostOfUpgrade();
+        if (GM.GetComponent<ScoreManager>().points < upgradeCost || isUpgraded)
+        {
+            upgradeButton.interactable = false;
+        }
+        else
+        {
+            upgradeButton.interactable = true;
+        }
     }
 
     //UI stuff

@@ -40,6 +40,14 @@ public class ClickerManager : MonoBehaviour {
         }
         //change UI for cost of upgrade
         ShowCostOfUpgrade();
+        if (GM.GetComponent<ScoreManager>().points < realHackerUpgradeCost || isRealHacker)
+        {
+            realHackerUpgradeButton.interactable = false;
+        }
+        else
+        {
+            realHackerUpgradeButton.interactable = true;
+        }
 	}
 
     //adds points when clicked
