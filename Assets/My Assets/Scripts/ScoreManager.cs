@@ -6,18 +6,21 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 
+    [Header("Points")]
     public double points;
     public double pointsPerSecond;
 
+    [Header("Points UI")]
     public Text pointsText;
     public Text pointsPerSecondText;
-
-    private GameObject STM;
+    
+    [Header("BotnetManagers")]
+    [Tooltip("This is for botnet managers with tier 1 botnetmanager script attached")]
     public GameObject[] BM1;
+    [Tooltip("This is for botnet managers with tier 2 botnetmanager script attached")]
     public GameObject[] BM2;
     
 	void Start () {
-        STM = GameObject.Find("ServerTierManager").gameObject;
         points = 0; //placeholder, will be store on player's account
 	}
 	

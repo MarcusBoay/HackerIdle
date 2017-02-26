@@ -28,6 +28,7 @@ public class UpgradesManager : MonoBehaviour {
     private GameObject TT;
     private Text TTTitle;
     private Text TTDesc;
+    private GameObject TTStatsGO;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class UpgradesManager : MonoBehaviour {
         TT = GameObject.Find("Canvas").transform.FindChild("Panel").FindChild("TooltipPanel").gameObject;
         TTTitle = TT.transform.FindChild("Title").GetComponent<Text>();
         TTDesc = TT.transform.FindChild("Description").GetComponent<Text>();
+        TTStatsGO = TT.transform.FindChild("Stats").gameObject;
     }
 
     void Update()
@@ -79,6 +81,7 @@ public class UpgradesManager : MonoBehaviour {
     {
         TTTitle.text = upgradeTitle;
         TTDesc.text = upgradeDescription;
+        TTStatsGO.SetActive(false);
         TT.SetActive(true);
     }
 
