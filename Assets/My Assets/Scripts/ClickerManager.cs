@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +6,36 @@ using UnityEngine.UI;
 
 public class ClickerManager : MonoBehaviour {
 
+    [Header("Real hacker upgrade")]
     public int realHackerUpgradeCost;
     public bool isRealHacker;
 
-    //UI stuff
+    [Header("Real hacker upgrade tooltip variables")]
+    public string upgradeTitle;
+    public string upgradeDescription;
+
+    [Header("Real hacker UI elements")]
     public Text realHackerUpgradeUIValue;
-
     public Button realHackerUpgradeButton;
+    
+    //Tooltip reference
+    private GameObject TT;
+    private Text TTTitle;
+    private Text TTDesc;
 
-    //GameManager reference
-    public GameObject GM;
-    public GameObject STM;
+    //GameManager Reference
+    private GameObject GM;
+    private GameObject STM;
     
 	void Start () {
         isRealHacker = false;
         GM = GameObject.Find("GameManager").gameObject;
-	}
+        STM = GameObject.Find("ServerTierManager").gameObject;
+
+        TT = GameObject.Find("Canvas").transform.FindChild("Panel").FindChild("TooltipPanel").gameObject;
+        TTTitle = TT.transform.FindChild("Title").GetComponent<Text>();
+        TTDesc = TT.transform.FindChild("Description").GetComponent<Text>();
+    }
 	
 	void Update () {
         //to find if player presses any letter keys
@@ -63,7 +78,7 @@ public class ClickerManager : MonoBehaviour {
     //calculates how many points to give to player
     public double CalculatePointsToAdd(double mPointsToAdd)
     {
-        float randValue = Random.value;
+        float randValue = UnityEngine.Random.value;
         //chance to get extra points
         if (randValue < 0.99f) //0.99f is a placeholder value
         {
@@ -98,5 +113,21 @@ public class ClickerManager : MonoBehaviour {
     public void ShowCostOfUpgrade()
     {
         realHackerUpgradeUIValue.text = " Cost: " + realHackerUpgradeCost.ToString();
+    }
+
+    //UI stuff
+    public void ShowTooltipUpgrade()
+    {
+        TTTitle.text = upgradeTitle;
+        TTDesc.text = upgradeDescription;
+        TT.SetActive(true);
+    }
+    
+    //UI stuff
+    public void HideTooltipUpgrade()
+    {
+        TT.SetActive(false);
+        TTTitle.text = String.Empty;
+        TTDesc.text = String.Empty;
     }
 }

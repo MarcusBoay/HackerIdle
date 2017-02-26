@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,20 +6,36 @@ using UnityEngine.UI;
 
 public class UpgradesManager : MonoBehaviour {
 
+    [Header("Upgrade variables")]
     public bool isUpgraded;
     public int upgradeCost;
 
-    //UI stuff
+    [Header("Real hacker upgrade tooltip variables")]
+    public string upgradeTitle;
+    public string upgradeDescription;
+
+    [Header("Upgrade UI")]
     public Text upgradeCostUIValue;
     public Button upgradeButton;
-
+    
+    [Header("Next upgrade UI")]
     public GameObject nextUpgradeButton;
 
+    //GameManager reference
     private GameObject GM;
+
+    //Tooltip reference
+    private GameObject TT;
+    private Text TTTitle;
+    private Text TTDesc;
 
     void Start()
     {
         GM = GameObject.Find("GameManager").gameObject;
+
+        TT = GameObject.Find("Canvas").transform.FindChild("Panel").FindChild("TooltipPanel").gameObject;
+        TTTitle = TT.transform.FindChild("Title").GetComponent<Text>();
+        TTDesc = TT.transform.FindChild("Description").GetComponent<Text>();
     }
 
     void Update()
@@ -55,5 +72,21 @@ public class UpgradesManager : MonoBehaviour {
     public void ShowCostOfUpgrade()
     {
         upgradeCostUIValue.text = " Cost: " + upgradeCost.ToString();
+    }
+
+    //UI stuff
+    public void ShowTooltipUpgrade()
+    {
+        TTTitle.text = upgradeTitle;
+        TTDesc.text = upgradeDescription;
+        TT.SetActive(true);
+    }
+
+    //UI stuff
+    public void HideTooltipUpgrade()
+    {
+        TT.SetActive(false);
+        TTTitle.text = String.Empty;
+        TTDesc.text = String.Empty;
     }
 }
