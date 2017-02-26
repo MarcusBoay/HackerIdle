@@ -221,7 +221,7 @@ public class BotnetTier2Manager : MonoBehaviour {
     }
 
     //UI stuff
-    public void HideTooltipBotnet()
+    public void HideTooltip()
     {
         TT.SetActive(false);
         TTTitle.text = String.Empty;
@@ -240,14 +240,5 @@ public class BotnetTier2Manager : MonoBehaviour {
         }
         TTStats.text = upgradeStats;
         TT.SetActive(true);
-    }
-
-    //UI stuff
-    public void HideTooltipUpgrade()
-    {
-        TT.SetActive(false);
-        TTTitle.text = String.Empty;
-        TTDesc.text = String.Empty;
-        TTStats.text = String.Empty;
     }
 }

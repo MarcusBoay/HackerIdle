@@ -180,7 +180,7 @@ public class BotnetManager : MonoBehaviour {
     }
 
     //UI stuff
-    public void HideTooltipBotnet()
+    public void HideTooltip()
     {
         TT.SetActive(false);
         TTTitle.text = String.Empty;
@@ -199,14 +199,5 @@ public class BotnetManager : MonoBehaviour {
         }
         TTStats.text = upgradeStats;
         TT.SetActive(true);
-    }
-
-    //UI stuff
-    public void HideTooltipUpgrade()
-    {
-        TT.SetActive(false);
-        TTTitle.text = String.Empty;
-        TTDesc.text = String.Empty;
-        TTStats.text = String.Empty;
     }
 }

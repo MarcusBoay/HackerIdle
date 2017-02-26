@@ -127,7 +127,7 @@ public class ClickerManager : MonoBehaviour {
     }
     
     //UI stuff
-    public void HideTooltipUpgrade()
+    public void HideTooltip()
     {
         TT.SetActive(false);
         TTTitle.text = String.Empty;
