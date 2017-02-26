@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BotnetTier2Manager : MonoBehaviour {
+
+    [Header("Settings")]
     public float botnetPointPerSecond;
     public int numberOfUpgrades;
     public float numberOfBotnets;
@@ -12,24 +14,35 @@ public class BotnetTier2Manager : MonoBehaviour {
     public double basePointsToLose;
     public double totalPointsToLose;
 
+    [Header("Costs")]
     public int baseCost;
     public int currentCost;
     public int upgradeCost;
     public int maxUpgrade;
 
+    [Header("Percent chance to get caught every time botnet tries to send ping")]
     [Range(0f, 1f)]
     public float percentToGetCaught;
     [Range(0f, 1f)]
     public float minPercentToGetCaught;
 
     private bool coroutineSwitch;
+    
+    [Header("Botnet tooltip variables")]
+    public string botnetTitle;
+    public string botnetDescription;
 
-    //UI stuff
+    [Header("Upgrade tooltip variables")]
+    public string upgradeTitle;
+    public string upgradeDescription;
+
+    [Header("Text UI")]
     public Text numberOfBotnetsUIValue;
     public Text costOfBotnetUIValue;
     public Text numberOfUpgradesUIValue;
     public Text costOfUpgradeUIValue;
 
+    [Header("Button UI")]
     public Button buyButton;
     public Button upgradeButton;
 
@@ -37,10 +50,20 @@ public class BotnetTier2Manager : MonoBehaviour {
     private GameObject GM;
     private GameObject STM;
 
+    //Tooltip reference
+    private GameObject TT;
+    private Text TTTitle;
+    private Text TTDesc;
+
     void Start()
     {
         GM = GameObject.Find("GameManager").gameObject;
         STM = GameObject.Find("ServerTierManager").gameObject;
+
+        TT = GameObject.Find("Canvas").transform.FindChild("Panel").FindChild("TooltipPanel").gameObject;
+        TTTitle = TT.transform.FindChild("Title").GetComponent<Text>();
+        TTDesc = TT.transform.FindChild("Description").GetComponent<Text>();
+
         coroutineSwitch = false;
         currentCost = baseCost;
         totalPointsToLose = basePointsToLose;
@@ -171,5 +194,37 @@ public class BotnetTier2Manager : MonoBehaviour {
     public void ShowUICost(Text myText, int myCost)
     {
         myText.text = " Cost: " + myCost.ToString();
+    }
+
+    //UI stuff
+    public void ShowTooltipBotnet()
+    {
+        TTTitle.text = botnetTitle;
+        TTDesc.text = botnetDescription;
+        TT.SetActive(true);
+    }
+
+    //UI stuff
+    public void HideTooltipBotnet()
+    {
+        TT.SetActive(false);
+        TTTitle.text = String.Empty;
+        TTDesc.text = String.Empty;
+    }
+
+    //UI stuff
+    public void ShowTooltipUpgrade()
+    {
+        TTTitle.text = upgradeTitle;
+        TTDesc.text = upgradeDescription;
+        TT.SetActive(true);
+    }
+
+    //UI stuff
+    public void HideTooltipUpgrade()
+    {
+        TT.SetActive(false);
+        TTTitle.text = String.Empty;
+        TTDesc.text = String.Empty;
     }
 }
