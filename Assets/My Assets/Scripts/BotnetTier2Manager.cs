@@ -32,11 +32,13 @@ public class BotnetTier2Manager : MonoBehaviour {
     [Header("Botnet tooltip variables")]
     public string botnetTitle;
     public string botnetDescription;
+    [Multiline]
     public string botnetStats;
 
     [Header("Upgrade tooltip variables")]
     public string upgradeTitle;
     public string upgradeDescription;
+    [Multiline]
     public string upgradeStats;
 
     [Header("Text UI")]
