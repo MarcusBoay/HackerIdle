@@ -9,7 +9,8 @@ public class BotnetTier2Manager : MonoBehaviour {
     [Header("Settings")]
     public float botnetPointPerSecond;
     public int numberOfUpgrades;
-    public float numberOfBotnets;
+    public int maxUpgrade;
+    public int numberOfBotnets;
     public double totalPointsPerSecond;
     public double basePointsToLose;
     public double totalPointsToLose;
@@ -19,7 +20,6 @@ public class BotnetTier2Manager : MonoBehaviour {
     public int baseCost;
     public int currentCost;
     public int upgradeCost;
-    public int maxUpgrade;
 
     [Header("Percent chance to get caught every time botnet tries to send ping")]
     [Range(0f, 1f)]
